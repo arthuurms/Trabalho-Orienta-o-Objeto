@@ -9,6 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SECRET_KEY'] = '123456'
 db = SQLAlchemy(app)
 
+#Singleton - Criacional
 class OpenAIConfig:
     _instance = None
 
@@ -45,6 +46,7 @@ class Descricao(db.Model):
 with app.app_context():
     db.create_all()
 
+#Estrutural - Strategy
 class Tipo_Descricao(ABC):
     @abstractmethod
     def gerar(nome_produto, comentario):
@@ -65,6 +67,7 @@ class CompletaDescricao(Tipo_Descricao):
     def gerar(nome_produto, comentario):
         return SimplificadorDescricao.gerar_descricao(nome_produto, comentario, "completa")
 
+#Estrutural - Fachada
 class SimplificadorDescricao:
     @staticmethod
     def gerar_descricao(nome_produto, comentario, tipo):
@@ -89,6 +92,7 @@ class SimplificadorDescricao:
         )
         return response.choices[0].message['content'].strip()
 
+#Criacional - Factory
 class CriarDescricao:
     @staticmethod
     def criar(tipo):
