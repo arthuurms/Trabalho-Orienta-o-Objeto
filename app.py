@@ -14,7 +14,7 @@ class OpenAIConfig:
     _instance = None
 
     @staticmethod
-    def get_instance():
+    def criar_instancia():
         if OpenAIConfig._instance is None:
             OpenAIConfig()
         return OpenAIConfig._instance
@@ -69,7 +69,7 @@ class CompletaDescricao(Tipo_Descricao):
 class SimplificadorDescricao:
     @staticmethod
     def gerar_descricao(nome_produto, comentario, tipo):
-        OpenAIConfig.get_instance()
+        OpenAIConfig.criar_instancia()
         
         if tipo == "pequena":
             max_tokens = 300
