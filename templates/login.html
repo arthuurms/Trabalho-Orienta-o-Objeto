@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login e Registro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+    {% block content %}
+        <div class="container">
+            <div class="form-container" id="login-form">
+                <h2>Login</h2>
+                <form action="/login" method="post">
+                    <label for="login-username">Nome</label>
+                    <input type="text" id="login-username" name="name" required>
+                    <label for="login-password">Senha</label>
+                    <input type="password" id="login-password" name="password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p>Não possui uma conta? <a href="#" onclick="toggleForms()">Registre aqui</a></p>
+            </div>
+            
+            <div class="form-container" id="register-form" style="display:none;">
+                <h2>Registrar</h2>
+                <form action="/registrar" method="post">
+                    <label for="register-username">Nome</label>
+                    <input type="text" id="register-username" name="name" required>
+                    <label for="register-password">Senha</label>
+                    <input type="password" id="register-password" name="password" required>
+                    <button type="submit">Registrar</button>
+                </form>
+                <p>Já possui uma conta? <a href="#" onclick="toggleForms()">Entrar aqui</a></p>
+            </div>
+        </div>
+    {% endblock %}
+    <script src="{{ url_for('static', filename='script/javascript.js') }}"></script>
+</body>
+</html>
